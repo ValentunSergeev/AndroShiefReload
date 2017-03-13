@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroShief</string>
+    <string name="action_settings">Настройки</string>
+    <string name="nav_cookbook">Мои рецепты</string>
+    <string name="nav_explore">Все рецепты</string>
+    <string name="nav_home">Домой</string>
+    <string name="nav_logout">Выйти</string>
+    <string name="nav_management">Управление</string>
+    <string name="nav_settings">Настройки</string>
+</resources>
