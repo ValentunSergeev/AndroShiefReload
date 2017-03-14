@@ -1,0 +1,107 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sign_up_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F5F7"
+    tools:context="com.valentun.androshief.Fragments.RegisterFragment">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F8F9F9">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/register_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_image_background"
+                android:src="@drawable/ic_orange_plus"
+                app:civ_border_color="@color/borderColor"
+                app:civ_border_width="1dp"
+                app:layout_constraintLeft_toLeftOf="@+id/register_email"
+                app:layout_constraintRight_toRightOf="@+id/register_email"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/register_email"
+                android:layout_width="250dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                app:layout_constraintHorizontal_bias="0.29"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/register_image" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/register_name"
+                android:layout_width="250dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:padding="16dp"
+                app:layout_constraintLeft_toLeftOf="@+id/register_email"
+                app:layout_constraintRight_toRightOf="@+id/register_email"
+                app:layout_constraintTop_toBottomOf="@+id/register_email" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/register_password"
+                android:layout_width="250dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/edit_text_background"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="16dp"
+                android:textColor="@color/colorBlack"
+                app:layout_constraintHorizontal_bias="0.25"
+                app:layout_constraintLeft_toLeftOf="@+id/register_name"
+                app:layout_constraintRight_toRightOf="@+id/register_name"
+                app:layout_constraintTop_toBottomOf="@+id/register_name" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/register_submit"
+                android:layout_width="250dp"
+                android:layout_height="65dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Go"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintLeft_toLeftOf="@+id/register_password"
+                app:layout_constraintRight_toRightOf="@+id/register_password"
+                app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>
+
