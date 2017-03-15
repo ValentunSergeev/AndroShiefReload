@@ -20,4 +20,8 @@ public class Constants {
     public static final String APP_PREFERENCES = "USER";
 
     public static final int GALLERY_REQUEST = 1;
+
+    public static final int MAX_QUALITY = 100;
+
+    public static final long TOKEN_LIFESPAN = 2 * 7 * 24 * 60 * 60 * 1000; //milliseconds in 2 weeks
 }

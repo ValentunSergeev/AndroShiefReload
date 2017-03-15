@@ -1,5 +1,6 @@
 package com.valentun.androshief;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -8,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.valentun.androshief.Adapters.PageAdapter;
+import com.valentun.androshief.Fragments.SignInFragment;
+
+import static com.valentun.androshief.Constants.APP_PREFERENCES;
 
 /**
  * Created by Valentun on 14.03.2017.
@@ -22,8 +26,21 @@ public class AuthActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-
         initializeTabs();
+
+        checkSavedAuthData();
+    }
+
+    private void checkSavedAuthData() {
+        SharedPreferences sPref = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+
+        String email = sPref.getString("EMAIL", null);
+
+        if (email != null) {
+            String password = sPref.getString("PASSWORD", null);
+            SignInFragment myFragment = (SignInFragment) getSupportFragmentManager().findFragmentById(R.id.sign_in_container);
+            myFragment.new SignInTask().execute(email, password);
+        }
     }
 
 

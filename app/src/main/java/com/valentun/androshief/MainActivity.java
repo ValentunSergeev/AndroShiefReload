@@ -1,5 +1,8 @@
 package com.valentun.androshief;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,25 +13,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.valentun.androshief.Constants.APP_PREFERENCES;
+import static com.valentun.androshief.Constants.TOKEN_LIFESPAN;
+import static com.valentun.androshief.Support.decodeBitMap;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Bitmap avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        validateToken();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        initializeNavBar();
     }
 
     @Override
@@ -75,5 +81,50 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void initializeNavBar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        setNavData(navigationView);
+
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void validateToken() {
+        SharedPreferences sPref = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        long authTime = sPref.getLong("AUTH_TIME", 0);
+
+        if (authTime == 0 || System.currentTimeMillis() - authTime > TOKEN_LIFESPAN) {
+            Intent intent = new Intent(this, AuthActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
+    private void setNavData(NavigationView navigationView) {
+        View headerLayout = navigationView.getHeaderView(0);
+        TextView email = (TextView) headerLayout.findViewById(R.id.nav_head_email);
+        TextView name = (TextView) headerLayout.findViewById(R.id.nav_head_name);
+        CircleImageView avatar = (CircleImageView) headerLayout.findViewById(R.id.nav_head_image);
+
+        SharedPreferences sPref = getSharedPreferences(Constants.APP_PREFERENCES, MODE_PRIVATE);
+        String savedEmail = sPref.getString("EMAIL", "");
+        String savedName = sPref.getString("NAME", "");
+        String savedImage = sPref.getString("IMAGE", "");
+
+        email.setText(savedEmail);
+        name.setText(savedName);
+
+        avatar.setImageBitmap(decodeBitMap(savedImage));
     }
 }
