@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.valentun.androshief.Adapters.PageAdapter;
-import com.valentun.androshief.Fragments.SignInFragment;
 
 import static com.valentun.androshief.Constants.APP_PREFERENCES;
 
@@ -38,8 +37,7 @@ public class AuthActivity extends AppCompatActivity {
 
         if (email != null) {
             String password = sPref.getString("PASSWORD", null);
-            SignInFragment myFragment = (SignInFragment) getSupportFragmentManager().findFragmentById(R.id.sign_in_container);
-            myFragment.new SignInTask().execute(email, password);
+            new SignInTask(this, fragmentContainer).execute(email, password);
         }
     }
 
