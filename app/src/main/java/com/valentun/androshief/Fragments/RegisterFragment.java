@@ -117,8 +117,8 @@ public class RegisterFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progress = ProgressDialog.show(getActivity(), "Registering...",
-                    "We are registering you, please wait a bit...", true);
+            progress = ProgressDialog.show(getActivity(), getString(R.string.register_progress_title),
+                    getString(R.string.register_progress_body), true);
         }
 
 

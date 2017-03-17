@@ -37,8 +37,8 @@ public class SignInTask extends AsyncTask<String, Void, ResponseEntity<User>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progress = ProgressDialog.show(activity, "Signing in...",
-                "We are searching your account, please wait a bit...", true);
+        progress = ProgressDialog.show(activity, activity.getString(R.string.sign_in_progress_title),
+                activity.getString(R.string.sign_in_progress_body), true);
     }
 
 
