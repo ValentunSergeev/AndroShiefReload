@@ -104,10 +104,15 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences sPref = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         long authTime = sPref.getLong("AUTH_TIME", 0);
 
-        if (authTime == 0 || System.currentTimeMillis() - authTime > TOKEN_LIFESPAN) {
+        if (authTime == 0) {
             Intent intent = new Intent(this, AuthActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+        }
+
+        if (System.currentTimeMillis() - authTime > TOKEN_LIFESPAN) {
+            new SignInTask(this, findViewById(R.id.main_container), Constants.AUTH_MODE.REAUTHORIZE)
+                          .execute(sPref.getString("EMAIL", ""), sPref.getString("PASSWORD", ""));
         }
     }
 

@@ -37,7 +37,7 @@ public class AuthActivity extends AppCompatActivity {
 
         if (email != null) {
             String password = sPref.getString("PASSWORD", null);
-            new SignInTask(this, fragmentContainer).execute(email, password);
+            new SignInTask(this, fragmentContainer, Constants.AUTH_MODE.SIGN_IN).execute(email, password);
         }
     }
 

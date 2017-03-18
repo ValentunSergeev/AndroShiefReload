@@ -26,5 +26,9 @@ public class Constants {
     static final int MAX_QUALITY = 100;
 
     static final long TOKEN_LIFESPAN = 2 * 7 * 24 * 60 * 60 * 1000; //milliseconds in 2 weeks
-//    public static final long TOKEN_LIFESPAN = 1000; //1 sec to test token refreshing
+//    static final long TOKEN_LIFESPAN = 1000; //1 sec to test token refreshing
+
+    public enum AUTH_MODE {
+        SIGN_IN, REAUTHORIZE
+    }
 }

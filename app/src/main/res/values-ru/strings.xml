@@ -12,9 +12,12 @@
     <string name="auth_password">Пароль</string>
     <string name="auth_submit">Подтвердить</string>
     <string name="sign_in">Вход</string>
+    <string name="sign_in_progress_body">Ищем ваш аккаунт, подождите чуть-чуть</string>
+
     <string name="register">Регистрация</string>
     <string name="register_progress_body">Регистрируем вас, подождите чуть-чуть</string>
-    <string name="register_progress_title">Регистрация…</string>
-    <string name="sign_in_progress_body">Ищем ваш аккаунт, подождите чуть-чуть</string>
-    <string name="sign_in_progress_title">Вход…</string>
+
+    <string name="progress_title">Регистрация…</string>
+    <string name="reauthorize_body">Обновляем токен</string>
+
 </resources>

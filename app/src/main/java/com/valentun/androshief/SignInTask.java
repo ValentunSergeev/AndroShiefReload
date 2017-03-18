@@ -17,6 +17,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import static com.valentun.androshief.Constants.AUTH_MODE;
 import static com.valentun.androshief.Support.saveAuthData;
 
 /**
@@ -28,17 +29,20 @@ public class SignInTask extends AsyncTask<String, Void, ResponseEntity<User>> {
     private String password;
     private Activity activity;
     private View container;
+    private AUTH_MODE mode;
 
-    public SignInTask(Activity activity, View container) {
+    public SignInTask(Activity activity, View container, AUTH_MODE mode) {
         this.container = container;
         this.activity = activity;
+        this.mode = mode;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progress = ProgressDialog.show(activity, activity.getString(R.string.sign_in_progress_title),
-                activity.getString(R.string.sign_in_progress_body), true);
+        String body = mode == AUTH_MODE.SIGN_IN ? activity.getString(R.string.sign_in_progress_body)
+                                                : activity.getString(R.string.reauthorize_body);
+        progress = ProgressDialog.show(activity, activity.getString(R.string.progress_title), body, true);
     }
 
 
@@ -74,9 +78,11 @@ public class SignInTask extends AsyncTask<String, Void, ResponseEntity<User>> {
         progress.dismiss();
 
         if (saveAuthData(response, activity, password)) {
-            Intent intent = new Intent(activity, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            activity.startActivity(intent);
+            if (mode == AUTH_MODE.SIGN_IN) {
+                Intent intent = new Intent(activity, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                activity.startActivity(intent);
+            }
         }
     }
 }

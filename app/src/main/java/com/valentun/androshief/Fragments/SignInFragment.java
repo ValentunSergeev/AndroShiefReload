@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.valentun.androshief.Constants;
 import com.valentun.androshief.R;
 import com.valentun.androshief.SignInTask;
 
@@ -38,7 +39,7 @@ public class SignInFragment extends Fragment {
             String email = inputEmail.getText().toString();
             String password = inputPassword.getText().toString();
 
-            new SignInTask(getActivity(), view).execute(email, password);
+            new SignInTask(getActivity(), view, Constants.AUTH_MODE.SIGN_IN).execute(email, password);
         });
 
         return view;

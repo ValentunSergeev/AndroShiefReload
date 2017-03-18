@@ -20,12 +20,13 @@
     <string name="auth_submit">Submit</string>
 
     <string name="sign_in">Log in</string>
-    <string name="sign_in_progress_title">Sign in…</string>
     <string name="sign_in_progress_body">We are searching your account, please wait a bit</string>
 
     <string name="register">Sign up</string>
-    <string name="register_progress_title">Registration…</string>
+    <string name="progress_title">Loading…</string>
     <string name="register_progress_body">We are registering you, please wait a bit</string>
+
+    <string name="reauthorize_body">Refreshing token</string>
 
     <string name="default_email" translatable="false">androshief@gmail.com</string>
 
