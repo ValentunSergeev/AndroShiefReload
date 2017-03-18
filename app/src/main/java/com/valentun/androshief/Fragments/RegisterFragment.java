@@ -1,6 +1,7 @@
 package com.valentun.androshief.Fragments;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,6 +22,7 @@ import com.valentun.androshief.DTOs.Register;
 import com.valentun.androshief.DTOs.User;
 import com.valentun.androshief.MainActivity;
 import com.valentun.androshief.R;
+import com.valentun.androshief.Support;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -50,12 +52,14 @@ public class RegisterFragment extends Fragment {
     private Bitmap image, smallImage;
     private AppCompatButton register;
     private View view;
+    private Activity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_register, container, false);
 
+        activity = getActivity();
 
         inputImage = (CircleImageView) view.findViewById(R.id.register_image);
 
@@ -98,12 +102,12 @@ public class RegisterFragment extends Fragment {
                 if (resultCode == RESULT_OK) {
                     Uri selectedImage = data.getData();
                     try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
+                        bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), selectedImage);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    image = getImage(bitmap, getActivity(), 80);
-                    smallImage = getImage(bitmap, getActivity(), 30);
+                    image = getImage(bitmap, activity, 80);
+                    smallImage = getImage(bitmap, activity, 30);
                     inputImage.setImageBitmap(image);
                     register.setEnabled(true);
                 }
@@ -115,9 +119,10 @@ public class RegisterFragment extends Fragment {
         private String password;
 
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute()
+        {
             super.onPreExecute();
-            progress = ProgressDialog.show(getActivity(), getString(R.string.progress_title),
+            progress = ProgressDialog.show(activity, getString(R.string.progress_title),
                     getString(R.string.register_progress_body), true);
         }
 
@@ -154,10 +159,8 @@ public class RegisterFragment extends Fragment {
         protected void onPostExecute(ResponseEntity<User> response) {
             progress.dismiss();
 
-            if (saveAuthData(response, getActivity(), password)) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+            if (saveAuthData(response, activity, password)) {
+                Support.sendNewTaskIntent(activity, MainActivity.class);
             }
         }
     }

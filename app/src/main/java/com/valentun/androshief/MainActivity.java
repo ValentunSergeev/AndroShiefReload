@@ -1,8 +1,6 @@
 package com.valentun.androshief;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -21,11 +19,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static com.valentun.androshief.Constants.APP_PREFERENCES;
 import static com.valentun.androshief.Constants.TOKEN_LIFESPAN;
 import static com.valentun.androshief.Support.decodeBitMap;
+import static com.valentun.androshief.Support.sendNewTaskIntent;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private Bitmap avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +72,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_settings:
                 break;
             case R.id.nav_logout:
-                break;
+                logout();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -104,11 +101,7 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences sPref = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         long authTime = sPref.getLong("AUTH_TIME", 0);
 
-        if (authTime == 0) {
-            Intent intent = new Intent(this, AuthActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
+        if (authTime == 0) sendNewTaskIntent(this, AuthActivity.class);
 
         if (System.currentTimeMillis() - authTime > TOKEN_LIFESPAN) {
             new SignInTask(this, findViewById(R.id.main_container), Constants.AUTH_MODE.REAUTHORIZE)
@@ -131,5 +124,14 @@ public class MainActivity extends AppCompatActivity
         name.setText(savedName);
 
         avatar.setImageBitmap(decodeBitMap(savedImage));
+    }
+
+    private void logout() {
+        SharedPreferences sPref = getSharedPreferences(Constants.APP_PREFERENCES, MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.clear();
+        ed.apply();
+
+        sendNewTaskIntent(this, AuthActivity.class);
     }
 }

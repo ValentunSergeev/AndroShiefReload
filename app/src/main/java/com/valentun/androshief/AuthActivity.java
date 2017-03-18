@@ -42,7 +42,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
 
-    private void initializeTabs(){
+    private void initializeTabs() {
         fragmentContainer = (CoordinatorLayout) findViewById(R.id.auth_container);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

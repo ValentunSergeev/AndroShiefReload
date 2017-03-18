@@ -2,7 +2,6 @@ package com.valentun.androshief;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -19,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import static com.valentun.androshief.Constants.AUTH_MODE;
 import static com.valentun.androshief.Support.saveAuthData;
+import static com.valentun.androshief.Support.sendNewTaskIntent;
 
 /**
  * Created by Valentun on 17.03.2017.
@@ -79,9 +79,7 @@ public class SignInTask extends AsyncTask<String, Void, ResponseEntity<User>> {
 
         if (saveAuthData(response, activity, password)) {
             if (mode == AUTH_MODE.SIGN_IN) {
-                Intent intent = new Intent(activity, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                activity.startActivity(intent);
+                sendNewTaskIntent(activity, MainActivity.class);
             }
         }
     }

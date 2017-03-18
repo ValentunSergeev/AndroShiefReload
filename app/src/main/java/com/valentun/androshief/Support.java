@@ -2,6 +2,7 @@ package com.valentun.androshief;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -73,9 +74,15 @@ public class Support {
         return encoded;
     }
 
-    public static Bitmap decodeBitMap(String stringImage) {
+    static Bitmap decodeBitMap(String stringImage) {
         byte[] decodedBytes = Base64.decode(stringImage, 0);
         Bitmap bmp = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
         return bmp;
+    }
+
+    public static void sendNewTaskIntent (Activity activity, Class<?> cls){
+        Intent intent = new Intent(activity, cls);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
     }
 }
