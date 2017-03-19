@@ -30,4 +30,10 @@
 
     <string name="default_email" translatable="false">androshief@gmail.com</string>
 
+    <string name="placeholder" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Integer eget rutrum sem, a tempus elit. Nullam vitae dignissim purus.
+        Cras aliquam, augue sit amet ullamcorper lacinia, odio arcu sagittis ante.</string>
+
+
+
 </resources>

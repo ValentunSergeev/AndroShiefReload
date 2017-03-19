@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity
         setNavData(navigationView);
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     private void validateToken() {
