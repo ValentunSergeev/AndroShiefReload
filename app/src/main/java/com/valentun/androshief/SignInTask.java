@@ -17,6 +17,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import static com.valentun.androshief.Constants.AUTH_MODE;
+import static com.valentun.androshief.Support.dismissProgressDialog;
 import static com.valentun.androshief.Support.saveAuthData;
 import static com.valentun.androshief.Support.sendNewTaskIntent;
 
@@ -75,7 +76,7 @@ public class SignInTask extends AsyncTask<String, Void, ResponseEntity<User>> {
 
     @Override
     protected void onPostExecute(ResponseEntity<User> response) {
-        progress.dismiss();
+        dismissProgressDialog(progress);
 
         if (saveAuthData(response, activity, password)) {
             if (mode == AUTH_MODE.SIGN_IN) {

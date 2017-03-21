@@ -1,6 +1,7 @@
 package com.valentun.androshief;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -84,5 +85,15 @@ public class Support {
         Intent intent = new Intent(activity, cls);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
+    }
+
+    public static void dismissProgressDialog(ProgressDialog dialog) {
+        try {
+            dialog.dismiss();
+        } catch (Exception e) {
+            // Do nothing.
+        } finally {
+            dialog = null;
+        }
     }
 }

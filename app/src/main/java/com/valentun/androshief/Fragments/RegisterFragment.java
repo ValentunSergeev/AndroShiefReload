@@ -38,6 +38,7 @@ import static android.app.Activity.RESULT_OK;
 import static com.valentun.androshief.Constants.GALLERY_REQUEST;
 import static com.valentun.androshief.Constants.ORANGE;
 import static com.valentun.androshief.Support.colorizeButton;
+import static com.valentun.androshief.Support.dismissProgressDialog;
 import static com.valentun.androshief.Support.encodeBitmap;
 import static com.valentun.androshief.Support.getImage;
 import static com.valentun.androshief.Support.saveAuthData;
@@ -157,7 +158,7 @@ public class RegisterFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ResponseEntity<User> response) {
-            progress.dismiss();
+            dismissProgressDialog(progress);
 
             if (saveAuthData(response, activity, password)) {
                 Support.sendNewTaskIntent(activity, MainActivity.class);

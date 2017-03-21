@@ -24,6 +24,8 @@ public class RecipesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getContext().getTheme().applyStyle(R.style.AppTheme_MaterialPager, true);
+
         view = inflater.inflate(R.layout.fragment_recipes, container, false);
 
         activity = (AppCompatActivity) getActivity();
@@ -33,6 +35,12 @@ public class RecipesFragment extends Fragment {
         initializeMaterialPager();
 
         return  view;
+    }
+
+    @Override
+    public void onDestroy() {
+        getContext().getTheme().applyStyle(R.style.AppTheme_NoActionBar, true);
+        super.onDestroy();
     }
 
     private void initializeMaterialPager() {
@@ -82,12 +90,12 @@ public class RecipesFragment extends Fragment {
             switch (page) {
                 case 0:
                     return HeaderDesign.fromColorResAndDrawable(
-                            R.color.accent_color,
+                            R.color.colorPrimary,
                             ResourcesCompat.getDrawable(getResources(), R.drawable.desert, null)
                             );
                 case 1:
                     return HeaderDesign.fromColorResAndDrawable(
-                            R.color.green,
+                            R.color.colorPrimary,
                             ResourcesCompat.getDrawable(getResources(), R.drawable.vegetables, null)
                             );
             }
@@ -98,5 +106,7 @@ public class RecipesFragment extends Fragment {
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
     }
+
+
 
 }

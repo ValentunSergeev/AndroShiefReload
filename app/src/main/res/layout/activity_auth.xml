@@ -10,7 +10,7 @@
     android:background="#F5F5F5">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/auth_toolbar"
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"

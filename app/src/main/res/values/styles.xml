@@ -8,14 +8,28 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BlackText">
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+    </style>
+
+    <style name="AppTheme.MaterialPager" parent="AppTheme.NoActionBar">
         <item name="android:tabWidgetStyle">@android:style/Widget.TabWidget</item>
 
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="android:windowTranslucentStatus" tools:targetApi="19">true</item>
 
         <item name="android:windowContentOverlay">@null</item>
-        <item name="windowActionBar">false</item>
         <item name="android:textColorPrimary">@android:color/white</item>
 
         <item name="android:statusBarColor" tools:targetApi="21">@color/colorPrimary</item>
@@ -23,17 +37,8 @@
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@color/drawerArrowColor</item>
     </style>
-
-    <style name="AppTheme.BlackText">
-        <item name="android:textColorPrimary">@android:color/black</item>
-    </style>
-
 </resources>

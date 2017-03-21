@@ -44,8 +44,4 @@ public class SignInFragment extends Fragment {
 
         return view;
     }
-
-
-
-
 }

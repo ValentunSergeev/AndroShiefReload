@@ -14,10 +14,10 @@
         android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
+        android:theme="@style/BlackText"
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:theme="@style/AppTheme.BlackText"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
