@@ -3,17 +3,18 @@ package com.valentun.androshief;
 public class Constants {
 
     public static class URL {
-        private static final String HOST = "https://androshief.herokuapp.com";
+        private static final String HOST = "https://androshief.herokuapp.com/";
 
         /* for future
-        public static final String INDEX = HOST + "/recipies.json";
-        public static final String CREATE = HOST + "/recipies.json";
-        public static final String COOKBOOK = HOST + "/cookbook.json";
+        public static final String INDEX = HOST + "recipies.json";
+        public static final String CREATE = HOST + "recipies.json";
+        public static final String COOKBOOK = HOST + "cookbook.json";
         */
 
 
-        public static final String REGISTER = HOST + "/auth/";
-        static final String SIGN_IN = HOST + "/auth/sign_in";
+        public static final String REGISTER = HOST + "auth/";
+        public static final String CATEGORIES = HOST + "categories/";
+        static final String SIGN_IN = HOST + "auth/sign_in";
     }
 
 

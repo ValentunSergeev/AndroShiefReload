@@ -18,8 +18,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.valentun.androshief.Constants.APP_PREFERENCES;
 import static com.valentun.androshief.Constants.TOKEN_LIFESPAN;
-import static com.valentun.androshief.Support.decodeBitMap;
-import static com.valentun.androshief.Support.sendNewTaskIntent;
+import static com.valentun.androshief.Utils.decodeBitmap;
+import static com.valentun.androshief.Utils.sendNewTaskIntent;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
         email.setText(savedEmail);
         name.setText(savedName);
 
-        avatar.setImageBitmap(decodeBitMap(savedImage));
+        avatar.setImageBitmap(decodeBitmap(savedImage, false));
     }
 
     private void logout() {

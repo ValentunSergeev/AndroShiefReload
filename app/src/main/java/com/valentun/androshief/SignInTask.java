@@ -17,9 +17,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import static com.valentun.androshief.Constants.AUTH_MODE;
-import static com.valentun.androshief.Support.dismissProgressDialog;
-import static com.valentun.androshief.Support.saveAuthData;
-import static com.valentun.androshief.Support.sendNewTaskIntent;
+import static com.valentun.androshief.Utils.dismissProgressDialog;
+import static com.valentun.androshief.Utils.saveAuthData;
+import static com.valentun.androshief.Utils.sendNewTaskIntent;
 
 /**
  * Created by Valentun on 17.03.2017.

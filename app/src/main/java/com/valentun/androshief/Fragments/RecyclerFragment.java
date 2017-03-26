@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.valentun.androshief.Adapters.RecyclerViewAdapter;
+import com.valentun.androshief.DTOs.Category;
 import com.valentun.androshief.R;
 
 import java.util.ArrayList;
@@ -26,10 +27,10 @@ public class RecyclerFragment extends Fragment {
     private static final boolean GRID_LAYOUT = false;
     private static final int ITEM_COUNT = 100;
 
-    private int color = 0;
+    private Category category;
 
-    public RecyclerFragment(int color) {
-        this.color = color;
+    public RecyclerFragment(Category category) {
+        this.category = category;
     }
 
 
@@ -58,6 +59,6 @@ public class RecyclerFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
-        mRecyclerView.setAdapter(new RecyclerViewAdapter(items, color));
+        mRecyclerView.setAdapter(new RecyclerViewAdapter(items, category));
     }
 }

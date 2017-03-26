@@ -22,7 +22,7 @@ import com.valentun.androshief.DTOs.Register;
 import com.valentun.androshief.DTOs.User;
 import com.valentun.androshief.MainActivity;
 import com.valentun.androshief.R;
-import com.valentun.androshief.Support;
+import com.valentun.androshief.Utils;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -37,11 +37,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.app.Activity.RESULT_OK;
 import static com.valentun.androshief.Constants.GALLERY_REQUEST;
 import static com.valentun.androshief.Constants.ORANGE;
-import static com.valentun.androshief.Support.colorizeButton;
-import static com.valentun.androshief.Support.dismissProgressDialog;
-import static com.valentun.androshief.Support.encodeBitmap;
-import static com.valentun.androshief.Support.getImage;
-import static com.valentun.androshief.Support.saveAuthData;
+import static com.valentun.androshief.Utils.colorizeButton;
+import static com.valentun.androshief.Utils.dismissProgressDialog;
+import static com.valentun.androshief.Utils.encodeBitmap;
+import static com.valentun.androshief.Utils.getImage;
+import static com.valentun.androshief.Utils.saveAuthData;
 
 /**
  * Created by Valentun on 14.03.2017.
@@ -68,17 +68,17 @@ public class RegisterFragment extends Fragment {
         inputPassword = (AppCompatEditText) view.findViewById(R.id.register_password);
         inputName = (AppCompatEditText) view.findViewById(R.id.register_name);
 
-        inputImage.setOnClickListener(view -> {
+        inputImage.setOnClickListener(view1 -> {
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
             photoPickerIntent.setType("image/*");
-            startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+            RegisterFragment.this.startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
         });
 
         register = (AppCompatButton) view.findViewById(R.id.register_submit);
 
         colorizeButton(register, ORANGE);
 
-        register.setOnClickListener(view -> {
+        register.setOnClickListener(view2 -> {
             String email = inputEmail.getText().toString();
             String password = inputPassword.getText().toString();
             String name = inputName.getText().toString();
@@ -161,7 +161,7 @@ public class RegisterFragment extends Fragment {
             dismissProgressDialog(progress);
 
             if (saveAuthData(response, activity, password)) {
-                Support.sendNewTaskIntent(activity, MainActivity.class);
+                Utils.sendNewTaskIntent(activity, MainActivity.class);
             }
         }
     }

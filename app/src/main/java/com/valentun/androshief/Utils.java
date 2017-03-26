@@ -16,6 +16,7 @@ import android.util.Base64;
 import com.valentun.androshief.DTOs.User;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.io.ByteArrayOutputStream;
@@ -28,7 +29,7 @@ import static com.valentun.androshief.Constants.MAX_QUALITY;
  * Created by Valentun on 14.03.2017.
  */
 
-public class Support {
+public class Utils {
     public static void colorizeButton(AppCompatButton btn, int color) {
         btn.setTextColor(Color.WHITE);
         btn.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
@@ -75,7 +76,8 @@ public class Support {
         return encoded;
     }
 
-    static Bitmap decodeBitMap(String stringImage) {
+    public static Bitmap decodeBitmap(String stringImage, boolean hasPrefix) {
+        if (hasPrefix) stringImage = stringImage.substring(23);
         byte[] decodedBytes = Base64.decode(stringImage, 0);
         Bitmap bmp = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
         return bmp;
@@ -95,5 +97,16 @@ public class Support {
         } finally {
             dialog = null;
         }
+    }
+
+    public static MultiValueMap<String, String> getAuthHeaders (Activity activity) {
+        SharedPreferences sPref = activity.getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add("Content-Type", "application/json");
+        headers.add("ACCESS-TOKEN", sPref.getString("ACCESS-TOKEN", ""));
+        headers.add("CLIENT", sPref.getString("CLIENT", ""));
+
+        return headers;
     }
 }

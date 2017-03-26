@@ -13,7 +13,7 @@ import com.valentun.androshief.R;
 import com.valentun.androshief.SignInTask;
 
 import static com.valentun.androshief.Constants.ORANGE;
-import static com.valentun.androshief.Support.colorizeButton;
+import static com.valentun.androshief.Utils.colorizeButton;
 
 /**
  * Created by Valentun on 14.03.2017.
@@ -35,7 +35,7 @@ public class SignInFragment extends Fragment {
 
         colorizeButton(signIn, ORANGE);
 
-        signIn.setOnClickListener(buttonView -> {
+        signIn.setOnClickListener((View buttonView) -> {
             String email = inputEmail.getText().toString();
             String password = inputPassword.getText().toString();
 
