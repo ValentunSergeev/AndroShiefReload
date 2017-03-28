@@ -25,7 +25,7 @@ import java.util.List;
 public class RecyclerFragment extends Fragment {
 
     private static final boolean GRID_LAYOUT = false;
-    private static final int ITEM_COUNT = 100;
+    private static final int ITEM_COUNT = 10;
 
     private Category category;
 

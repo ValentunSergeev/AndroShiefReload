@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.valentun.androshief.DTOs.Category;
@@ -75,6 +76,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 descriptionView.setText(category.getDescription());
                 break;
             default:
+                ImageView image = (ImageView) holder.itemView.findViewById(R.id.recipes_card_item_image);
+                image.post(image::requestLayout);
         }
     }
 }
