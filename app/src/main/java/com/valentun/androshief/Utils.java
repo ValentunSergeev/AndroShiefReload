@@ -63,8 +63,7 @@ public class Utils {
 
     public static Bitmap getImage(Bitmap bitmap , Context context, int size) {
         final float scale = context.getResources().getDisplayMetrics().density;
-        Bitmap bmp = ThumbnailUtils.extractThumbnail(bitmap, (int) (size * scale), (int) (size * scale));
-        return bmp;
+        return ThumbnailUtils.extractThumbnail(bitmap, (int) (size * scale), (int) (size * scale));
     }
 
     public static String encodeBitmap(Bitmap bitmap) {
@@ -72,15 +71,13 @@ public class Utils {
         bitmap.compress(Bitmap.CompressFormat.PNG, MAX_QUALITY, byteArrayOutputStream);
         byte[] byteArray = byteArrayOutputStream.toByteArray();
 
-        String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
-        return encoded;
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
     public static Bitmap decodeBitmap(String stringImage, boolean hasPrefix) {
         if (hasPrefix) stringImage = stringImage.substring(23);
         byte[] decodedBytes = Base64.decode(stringImage, 0);
-        Bitmap bmp = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
-        return bmp;
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
     public static void sendNewTaskIntent (Activity activity, Class<?> cls){
@@ -106,6 +103,7 @@ public class Utils {
         headers.add("Content-Type", "application/json");
         headers.add("ACCESS-TOKEN", sPref.getString("ACCESS-TOKEN", ""));
         headers.add("CLIENT", sPref.getString("CLIENT", ""));
+        headers.add("UID", sPref.getString("EMAIL", ""));
 
         return headers;
     }
